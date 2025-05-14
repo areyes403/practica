@@ -13,11 +13,11 @@ class RepositoryImpl (
 
     override suspend fun getLocation(): Location {
         val lastLocation = fusedLocationProviderClient.lastLocation.await()
-        return Location(latitude = lastLocation.latitude, longitude = lastLocation.longitude)
+        return Location(latitude = lastLocation.latitude, longitude = lastLocation.longitude, name = "My Location")
     }
 
     override suspend fun getOrders(): List<Location> = listOf(
-        Location(latitude = 20.636988, longitude = -103.4111739),
-        Location(latitude = 20.6464443, longitude = -103.3450322)
+        Location(latitude = 20.7403974, longitude = -103.3472027, name = "First Location"),
+        Location(latitude = 20.7013204, longitude = -103.3513022, name = "Second Location")
     )
 }

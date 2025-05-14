@@ -80,18 +80,31 @@ class MainActivity : AppCompatActivity() {
         viewModel.orders.observe(this){ list->
             if (list.size<3){
                 val first=list[0]
-                binding.txtFirstOrder.text="First Latitude:${first.latitude}, Longitude:${first.longitude}"
+                binding.txtFirstOrder.text="${first.name} Latitude:${first.latitude}, Longitude:${first.longitude}"
                 val second=list[1]
-                binding.txtSecondOrder.text="Second Latitude:${second.latitude}, Longitude:${second.longitude}"
+                binding.txtSecondOrder.text="${second.name} Latitude:${second.latitude}, Longitude:${second.longitude}"
             }
-
+        }
+        viewModel.deliverStatus.observe(this){ status->
+            binding.txtToDelivery.text="To delivery: ${status.toDeliver?.name} \n Next To Delivery: ${status.nextToDeliver?.name}"
+            when{
+                status.orders.isEmpty()->{
+                    binding.btnDeliver.text = if (status.toDeliver==null) "START" else "FINISH"
+                }
+//                status.orders.size==1->{
+//                    binding.btnDeliver.text="FINISH"
+//                }
+                else->{
+                    binding.btnDeliver.text="DELIVER"
+                }
+            }
         }
     }
 
     private fun onClick(){
         binding.btnDeliver.setOnClickListener {
             checkPermissions {
-                snackBar("PermissionGranted")
+                viewModel.deliver()
             }
         }
     }
