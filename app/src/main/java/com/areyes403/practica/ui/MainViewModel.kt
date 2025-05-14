@@ -21,7 +21,7 @@ class MainViewModel (
     private val _orders=MutableLiveData<List<Location>>()
     val orders:LiveData<List<Location>> get() = _orders
 
-    private val _deliverStatus=MutableLiveData<DeliverState>(DeliverState(null,null))
+    private val _deliverStatus=MutableLiveData<DeliverState>(DeliverState())
     val deliverStatus:LiveData<DeliverState> get() = _deliverStatus
 
     init {
