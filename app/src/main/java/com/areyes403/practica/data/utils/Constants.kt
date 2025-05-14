@@ -1,0 +1,6 @@
+package com.areyes403.practica.data.utils
+
+import android.Manifest
+
+const val PERMISSION_ACCESS_FINE_LOCATION= Manifest.permission.ACCESS_FINE_LOCATION
+const val PERMISSION_ACCESS_COARSE_LOCATION= Manifest.permission.ACCESS_COARSE_LOCATION
